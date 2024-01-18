@@ -84,7 +84,7 @@ spec:
               value: "GET /auth/health/ready, GET /actuator/health, GET /health, GET /ready, GET /live, GET /metrics, GET /api/healthcheck, GET /api/health, GET /q/health, GET /healthcheck, EntryPoint traefik, EntryPoint websecure AWSALB"
     # Cluster Agent configuration
     clusterAgent:
-      replicas: "somereplicas"
+      replicas: 1
       containers:
         cluster-agent:
           env:
