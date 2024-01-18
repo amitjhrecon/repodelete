@@ -38,21 +38,21 @@ spec:
   # Enable Features
   features:
     apm:
-      enabled: "someapm"
+      enabled: "false"
       hostPortConfig:
-        enabled: "someconfig"
+        enabled: "false"
     dogstatsd:
       hostPortConfig:
-        enabled:  "someport"
+        enabled:  "false"
     logCollection:
-      enabled:  "somelog"
-      containerCollectAll:  "somecollect"
+      enabled:  "false"
+      containerCollectAll:  "false"
     liveProcessCollection:
-      enabled:  "someliveprocess"
+      enabled:  "false"
     npm:
-      enabled:  "somenpm"
+      enabled:  "false"
     usm:
-      enabled:  "someusm"
+      enabled:  "false"
       
   override:
     # Node Agent configuration
