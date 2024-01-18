@@ -1,0 +1,6 @@
+dependencies:
+- name: datadog-operator
+  repository: https://helm.datadoghq.com
+  version: 1.4.1
+digest: sha256:2d77719235642a08e18cd36dbf8f760e7855fb180ae1d0b83181fee6bb74a3e7
+generated: "2024-01-18T10:55:44.291141-08:00"
