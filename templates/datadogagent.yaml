@@ -38,28 +38,28 @@ spec:
   # Enable Features
   features:
     apm:
-      enabled: "false"
+      enabled: 'false'
       hostPortConfig:
-        enabled: "false"
+        enabled: 'false'
     dogstatsd:
       hostPortConfig:
-        enabled:  "false"
+        enabled:  'false'
     logCollection:
-      enabled:  "false"
-      containerCollectAll:  "false"
+      enabled:  'false'
+      containerCollectAll:  'false'
     liveProcessCollection:
-      enabled:  "false"
+      enabled:  'false'
     npm:
-      enabled:  "false"
+      enabled:  'false'
     usm:
-      enabled:  "false"
+      enabled:  'false'
       
   override:
     # Node Agent configuration
     nodeAgent:
       env:
         - name: DD_LOGS_CONFIG_AUTO_MULTI_LINE_DETECTION
-          value: "true"
+          value: 'true'
       extraConfd:
         configDataMap:
           linkerd.yaml: |-
