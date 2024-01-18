@@ -48,7 +48,7 @@ spec:
       enabled: 'false'
       containerCollectAll: 'false'
     liveProcessCollection:
-      enabled: 'false'
+      enabled: 'true'
     npm:
       enabled: 'false'
     usm:
