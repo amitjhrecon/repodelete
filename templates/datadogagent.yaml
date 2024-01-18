@@ -43,16 +43,16 @@ spec:
         enabled: 'false'
     dogstatsd:
       hostPortConfig:
-        enabled:  'false'
+        enabled: 'false'
     logCollection:
-      enabled:  'false'
-      containerCollectAll:  'false'
+      enabled: 'false'
+      containerCollectAll: 'false'
     liveProcessCollection:
-      enabled:  'false'
+      enabled: 'false'
     npm:
-      enabled:  'false'
+      enabled: 'false'
     usm:
-      enabled:  'false'
+      enabled: 'false'
       
   override:
     # Node Agent configuration
