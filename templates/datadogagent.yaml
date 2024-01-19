@@ -39,7 +39,7 @@ spec:
   # Enable Features
   features:
     apm:
-      enabled: true
+      enabled: false
       hostPortConfig:
         enabled: true
     dogstatsd:
