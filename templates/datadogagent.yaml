@@ -1,18 +1,19 @@
+# Source: k8s-datadog-operator/templates/datadogagent.yaml
 apiVersion: datadoghq.com/v2alpha1
 kind: DatadogAgent
 metadata:
   name: datadog
   labels:
-    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
-    app.kubernetes.io/instance: {{ .Release.Name | quote }}
-    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/instance: "datadogagent"
+    helm.sh/chart: "k8s-datadog-operator-1.5.0"
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "5"
     "helm.sh/resource-policy": keep
 spec:
   global:
-    clusterName: "somename"
+    clusterName: sandbox
     credentials:
       apiSecret:
         secretName: env-secrets
@@ -38,28 +39,34 @@ spec:
   # Enable Features
   features:
     apm:
-      enabled: 'false'
+      enabled: true
       hostPortConfig:
-        enabled: 'false'
+        enabled: true
     dogstatsd:
       hostPortConfig:
-        enabled: 'false'
+        enabled:  true
     logCollection:
-      enabled: 'false'
-      containerCollectAll: 'false'
+      enabled:  true
+      containerCollectAll:  true
+    # Enabled Process Monitoring.
     liveProcessCollection:
-      enabled: 'true'
+      enabled:  true
+    # Enabled Network Performance Monitoring.
     npm:
-      enabled: 'false'
+      enabled:  false
+    # Enables OOMKill eBPF-based check.
+    oomKill:
+      enabled:  true
+    # Enabled Universal Service Monitoring.
     usm:
-      enabled: 'false'
-      
+      enabled:  true
+
   override:
-    # Node Agent configuration
+    # Node Agent Configuration
     nodeAgent:
       env:
         - name: DD_LOGS_CONFIG_AUTO_MULTI_LINE_DETECTION
-          value: 'true'
+          value: "true"
       extraConfd:
         configDataMap:
           linkerd.yaml: |-
@@ -75,18 +82,19 @@ spec:
               - name: trace-agent
                 host: localhost
                 port: 8126
-                
-      # Configurations specific to the containers "agent" and "trace-agent"
+
+      # Specify additional environment variables in the container. See https://docs.datadoghq.com/agent/kubernetes/?tab=helm#environment-variables. Configurations specific to the containers "agent" and "trace-agent"
       containers: 
         trace-agent:
           env:
             - name: DD_APM_IGNORE_RESOURCES
               value: "GET /auth/health/ready, GET /actuator/health, GET /health, GET /ready, GET /live, GET /metrics, GET /api/healthcheck, GET /api/health, GET /q/health, GET /healthcheck, EntryPoint traefik, EntryPoint websecure AWSALB"
-    # Cluster Agent configuration
+    # Cluster Agent Configuration
     clusterAgent:
-      replicas: 1
+      replicas: 2
       containers:
         cluster-agent:
           env:
             - name: DD_CLUSTER_AGENT_COLLECT_KUBERNETES_TAGS
               value: "true"
+
