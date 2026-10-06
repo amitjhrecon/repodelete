@@ -1,0 +1,12 @@
+template:
+  name: testmonitoredservice
+  identifier: testmonitoredservice
+  versionLabel: "1"
+  type: MonitoredService
+  tags: {}
+  spec:
+    serviceRef: account.dummy
+    environmentRef: account.testapi
+    type: Application
+    sources:
+      healthSources: []
